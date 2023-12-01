@@ -446,7 +446,7 @@ func (s *SourcesManager) updateCommitHistory() error {
 
 	prGitLogs := make([]GitLogRecord, 0)
 	for pr := range prHeadCommits {
-		mergeable := prs[pr]
+		//mergeable := prs[pr]
 		cmd = exec.Command(
 			"git",
 			"log",
@@ -481,16 +481,17 @@ func (s *SourcesManager) updateCommitHistory() error {
 		if err == nil {
 			// Include non-mergeable (or already merged) PRs that are less than
 			// 48 hours old, and mergeable PRs that are less than 90 days old
-			if authored.After(time.Now().Add(-2*24*time.Hour)) ||
-				(mergeable && authored.After(time.Now().Add(-90*24*time.Hour))) {
-				// Yes we want this one!
-				prGitLogs = append(prGitLogs, GitLogRecord{
-					Authored:   authored,
-					Committed:  authored,
-					Subject:    fmt.Sprintf("PR #%d - %s", pr, prData.Subject),
-					CommitHash: prHeadCommits[pr],
-				})
-			}
+			//if authored.After(time.Now().Add(-2*24*time.Hour)) ||
+			//	(mergeable && authored.After(time.Now().Add(-90*24*time.Hour))) {
+			// Yes we want this one!
+			// BoC: append all PRs, do not filter on age
+			prGitLogs = append(prGitLogs, GitLogRecord{
+				Authored:   authored,
+				Committed:  authored,
+				Subject:    fmt.Sprintf("PR #%d - %s", pr, prData.Subject),
+				CommitHash: prHeadCommits[pr],
+			})
+			//}
 		} else {
 			logging.Warnf("Authored date for PR %d could not be parsed: %v", pr, err)
 		}
