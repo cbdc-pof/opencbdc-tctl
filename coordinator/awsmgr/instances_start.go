@@ -82,14 +82,14 @@ func (am *AwsManager) StartNewAgents(
 			// array we can easily loop over the spot-ondemand options in a
 			// for{} loop
 			marketOptionsList := []*types.InstanceMarketOptionsRequest{
-				{
-					MarketType: types.MarketTypeSpot,
-					SpotOptions: &types.SpotMarketOptions{
-						BlockDurationMinutes:         aws.Int32(60),
-						InstanceInterruptionBehavior: types.InstanceInterruptionBehaviorTerminate,
-						SpotInstanceType:             types.SpotInstanceTypeOneTime,
-					},
-				},
+				//{
+				//	MarketType: types.MarketTypeSpot,
+				//	SpotOptions: &types.SpotMarketOptions{
+				//		BlockDurationMinutes:         aws.Int32(60),
+				//		InstanceInterruptionBehavior: types.InstanceInterruptionBehaviorTerminate,
+				//		SpotInstanceType:             types.SpotInstanceTypeOneTime,
+				//	},
+				//},
 				nil,
 			}
 
