@@ -105,7 +105,7 @@ const ScheduledRunProperty = (props) => {
           )}
           {props.type === "txtype" && (
             <Selector
-            values={["transfer", "erc20"]}
+            values={["transfer", "erc20", "escrow"]}
             valueFunc={(c) => c}
             displayFunc={(c) => c}
             value={props.value}
